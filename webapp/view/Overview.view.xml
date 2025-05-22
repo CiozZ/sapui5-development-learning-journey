@@ -2,8 +2,7 @@
     xmlns:mvc="sap.ui.core.mvc"
     xmlns:f="sap.ui.layout.form"
     xmlns:core="sap.ui.core"
-    xmlns="sap.m"
-    core:require="{formatter: 'sap/training/exc/model/formatter'}">
+    xmlns="sap.m" core:require="{formatter: 'sap/training/exc/model/formatter'}">
 
     <Page title="Flight Customers">
         <content>
@@ -48,7 +47,16 @@
                     </f:SimpleForm>
                 </content>
             </Panel>
-            <Table headerText="Customers" growing="true" growingThreshold="5" class="sapUiResponsiveMargin" width="auto" items="{/Customers}" mode="SingleSelectLeft" selectionChange=".onCustomerChange">
+            <Table id="customerTable" growing="true" growingThreshold="5" class="sapUiResponsiveMargin" width="auto" items="{ path: '/Customers', sorter: [
+                                                { path: 'City', group:true }, 
+                                                { path: 'CustomerName' }] }" mode="SingleSelectLeft" selectionChange=".onCustomerChange">
+                <headerToolbar>
+                    <Toolbar>
+                        <Title text="Customers"/>
+                        <ToolbarSpacer/>
+                        <SearchField width="40%" search=".onFilterCustomers"/>
+                    </Toolbar>
+                </headerToolbar>
                 <columns>
                     <Column>
                         <header>
