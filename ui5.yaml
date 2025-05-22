@@ -1,5 +1,3 @@
-# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
-
 specVersion: "2.5"
 metadata:
   name: sap.training.exc
@@ -9,17 +7,16 @@ server:
     - name: fiori-tools-proxy
       afterMiddleware: compression
       configuration:
-        ignoreCertError: false # If set to true, certificate errors will be ignored. E.g. self-signed certificates will be accepted
+        ignoreCertError: false
         ui5:
           path:
             - /resources
             - /test-resources
           url: https://ui5.sap.com
-        backend:
-          - path: /sap
-            url: http://s4d.virtual:443
-            client: '100'
+        services:
+          - urlPath: /sap
             destination: S4D_100
+            path: /
     - name: fiori-tools-appreload
       afterMiddleware: compression
       configuration:
